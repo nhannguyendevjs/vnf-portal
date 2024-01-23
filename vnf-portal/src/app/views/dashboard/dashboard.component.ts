@@ -10,6 +10,6 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core'
 })
 export class DashboardComponent implements OnInit {
   ngOnInit() {
-    // TODO: implement
+    // TODO implement
   }
 }

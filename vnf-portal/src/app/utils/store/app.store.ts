@@ -1,4 +1,4 @@
-import { userReducer } from './reducer/user.reducer'
+import { userReducer } from './reducers/user.reducer'
 
 export const AppStore = {
   user: userReducer,

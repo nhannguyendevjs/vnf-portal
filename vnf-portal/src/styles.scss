@@ -1,0 +1,21 @@
+// Animated CSS
+@import '../node_modules/animate.css/animate.min.css';
+
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Common
+@import './styles/common/variables';
+@import './styles/common/scrollbar';
+
+// Mixins
+@import './styles/mixins/loading';
+
+// Views
+@import './styles/views/shell';
+@import './styles/views/dashboard';
+
+// App
+@import './styles/app';

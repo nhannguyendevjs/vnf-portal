@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +8,4 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core'
   templateUrl: './dashboard.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent implements OnInit {
-  ngOnInit() {
-    // TODO implement
-  }
-}
+export class DashboardComponent {}

@@ -4,7 +4,7 @@ import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
 import { Subject, takeUntil, timer } from 'rxjs'
 import { environment } from './environments/environment'
-import { AppSelectors } from './utils/store/app.selector'
+import { AppSelectors } from './store/app.selector'
 
 @Component({
   selector: 'app-root',

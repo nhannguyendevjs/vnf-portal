@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   selector: 'app-shell',
@@ -8,8 +8,4 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core'
   templateUrl: './shell.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShellComponent implements OnInit {
-  ngOnInit() {
-    // TODO: implement
-  }
-}
+export class ShellComponent {}

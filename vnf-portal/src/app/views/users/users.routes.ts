@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router'
-import { SignInComponent } from './sign-in.component'
+import { UsersComponent } from './users.component'
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: SignInComponent,
-    title: 'Sign in',
+    component: UsersComponent,
+    title: 'Users',
   },
 ]

@@ -4,14 +4,16 @@ import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
 import { Subject, takeUntil, timer } from 'rxjs'
 import { environment } from './environments/environment'
-import { AppSelectors } from './store/app.selector'
+import { InnerComponent } from './layouts/inner/inner.component'
+import { OuterComponent } from './layouts/outer/outer.component'
+import { AppSelectors } from './stores/app-selector'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet, OuterComponent, InnerComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
   #destroy$ = new Subject<void>()
@@ -19,16 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   #swUpdate = inject(SwUpdate)
   #translocoService = inject(TranslocoService)
   #router = inject(Router)
-
-  constructor() {
-    const { user } = AppSelectors()
-
-    user.pipe(takeUntil(this.#destroy$)).subscribe((user) => {
-      if (user) {
-        console.log('Current User: ', user)
-      }
-    })
-  }
 
   ngOnInit() {
     this.#registerServiceWorkerUpgrade()

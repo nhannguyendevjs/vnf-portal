@@ -2,12 +2,16 @@ import { Routes } from '@angular/router'
 
 export const routes: Routes = [
   {
-    path: 'sign-in',
-    loadChildren: () => import('./views/sign-in/sign-in.routes').then((m) => m.routes),
+    path: 'users',
+    loadChildren: () => import('./views/users/users.routes').then((m) => m.routes),
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./views/dashboard/dashboard.routes').then((m) => m.routes),
+    path: 'home',
+    loadChildren: () => import('./views/home/home.routes').then((m) => m.routes),
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./views/sign-in/sign-in.routes').then((m) => m.routes),
   },
   {
     path: 'shell',
@@ -15,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {

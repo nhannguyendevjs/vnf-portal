@@ -13,6 +13,14 @@
 // Mixins
 @import './styles/mixins/loading';
 
+// Components
+@import './styles/components/nav-bar';
+@import './styles/components/nav-list';
+
+// Layouts
+@import './styles/layouts/outer';
+@import './styles/layouts/inner';
+
 // Views
 @import './styles/views/shell';
 @import './styles/views/dashboard';

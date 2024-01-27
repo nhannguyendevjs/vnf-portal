@@ -7,16 +7,17 @@ import { provideServiceWorker } from '@angular/service-worker'
 import { provideTransloco } from '@ngneat/transloco'
 import { provideStore } from '@ngrx/store'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
-import { AppInterceptor } from './app.interceptor'
 import { routes } from './app.routes'
 import { environment } from './environments/environment'
-import { TranslocoHttpLoader } from './transloco-loader'
+import { AuthInterceptor } from './interceptors/auth.interceptor'
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor'
 import { AppStore } from './stores/app-store'
+import { TranslocoHttpLoader } from './transloco-loader'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideHttpClient(withInterceptors([AppInterceptor])),
+    provideHttpClient(withInterceptors([AuthorizationInterceptor, AuthInterceptor])),
     provideRouter(routes, withComponentInputBinding()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

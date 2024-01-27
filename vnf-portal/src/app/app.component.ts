@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnDestroy, OnInit, inject } from '@angular/core'
-import { NavigationStart, Router, RouterOutlet } from '@angular/router'
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
 import { Subject, takeUntil, timer } from 'rxjs'
+import { LocalStorageKeys } from './enums/local-storage'
 import { environment } from './environments/environment'
 import { InnerComponent } from './layouts/inner/inner.component'
 import { OuterComponent } from './layouts/outer/outer.component'
@@ -29,8 +30,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   #registerRouterEvents() {
     this.#router.events.pipe(takeUntil(this.#destroy$)).subscribe((navigationEvent) => {
-      if (navigationEvent instanceof NavigationStart) {
-        // TODO handle navigation start event
+      if (navigationEvent instanceof NavigationEnd) {
+        const { urlAfterRedirects } = navigationEvent
+
+        if (!urlAfterRedirects.includes('/sign-in')) {
+          localStorage.setItem(LocalStorageKeys.lastUrl, urlAfterRedirects)
+        }
       }
     })
   }

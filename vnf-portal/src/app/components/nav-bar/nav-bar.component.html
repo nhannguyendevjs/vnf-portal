@@ -9,9 +9,7 @@
     <button *ngIf="!currentUser" class="text-left" cdkMenuItem [routerLink]="['/sign-in']">Sign in</button>
 
     <ng-container *ngIf="currentUser">
-      <button class="text-left" cdkMenuItem>
-        {{ currentUser?.name }} ~~ <span class="font-medium">{{ currentUser?.role | uppercase }}</span>
-      </button>
+      <button class="text-left" cdkMenuItem>{{ currentUser?.name }} | {{ currentUser?.role | uppercase }}</button>
       <button class="text-left" cdkMenuItem>Settings</button>
       <button class="text-left" cdkMenuItem (click)="signOut()">Sign out</button>
     </ng-container>

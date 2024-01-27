@@ -7,9 +7,9 @@ import { AuthSignInResponse } from '../types/auth'
   providedIn: 'root',
 })
 export class AuthService {
-  http = inject(HttpClient)
+  #http = inject(HttpClient)
 
   signIn(username: string, password: string) {
-    return this.http.post<AuthSignInResponse>(APIs.auth.signIn, { account: { username, password } })
+    return this.#http.post<AuthSignInResponse>(APIs.auth.signIn, { account: { username, password } })
   }
 }

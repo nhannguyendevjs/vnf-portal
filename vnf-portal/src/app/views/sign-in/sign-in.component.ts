@@ -4,7 +4,8 @@ import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators 
 import { Store } from '@ngrx/store'
 import { LocalStorageKeys } from '../../enums/local-storage'
 import { AuthService } from '../../services/auth.service'
-import { setLoggedInUser } from '../../stores/actions/user.actions'
+import * as UserActions from '../../stores/actions/user.actions'
+import { AppStore } from '../../stores/schemas/store.schema'
 
 @Component({
   selector: 'app-sign-in',
@@ -14,12 +15,12 @@ import { setLoggedInUser } from '../../stores/actions/user.actions'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent {
-  authService = inject(AuthService)
-  storeService = inject(Store)
+  #authService = inject(AuthService)
+  #appStore = inject(Store) as Store<AppStore>
 
-  formBuilder = inject(FormBuilder)
+  #formBuilder = inject(FormBuilder)
 
-  signInForm = this.formBuilder.group({
+  signInForm = this.#formBuilder.group({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   })
@@ -39,11 +40,11 @@ export class SignInComponent {
 
     if (this.signInForm.valid) {
       const { username, password } = this.signInForm.value
-      this.authService.signIn(username, password).subscribe((res) => {
+      this.#authService.signIn(username, password).subscribe((res) => {
         if (res.success) {
           const { accessToken, user } = res.data
           localStorage.setItem(LocalStorageKeys.authorization, accessToken)
-          this.storeService.dispatch(setLoggedInUser(user))
+          this.#appStore.dispatch(UserActions.setUser(user))
         }
       })
     }

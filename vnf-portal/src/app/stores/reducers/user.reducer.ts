@@ -5,6 +5,6 @@ export const initialState = null
 
 export const userReducer = createReducer(
   initialState,
-  on(UserActions.setLoggedInUser, (_actionType, action) => action.payload),
-  on(UserActions.resetLoggedInUser, () => null)
+  on(UserActions.setUser, (_actionType, action) => action.payload),
+  on(UserActions.resetUser, () => null)
 )

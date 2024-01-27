@@ -9,6 +9,12 @@ import { AuthSignInResponse } from '../types/auth'
 export class AuthService {
   #http = inject(HttpClient)
 
+  isSignedIn() {
+    const accessToken = localStorage.getItem('authorization')
+
+    return !!accessToken
+  }
+
   signIn(username: string, password: string) {
     return this.#http.post<AuthSignInResponse>(APIs.auth.signIn, { account: { username, password } })
   }

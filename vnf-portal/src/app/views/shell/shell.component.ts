@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { ShellActions } from '../../enums/shell'
 
 @Component({
   selector: 'app-shell',
@@ -8,4 +10,22 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   templateUrl: './shell.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShellComponent {}
+export class ShellComponent {
+  #route = inject(ActivatedRoute)
+
+  constructor() {
+    const params: any = this.#route.snapshot.queryParams
+
+    if (params.action === ShellActions.signIn) {
+      // TODO
+    }
+
+    if (params.action === ShellActions.signOut) {
+      // TODO
+    }
+
+    if (params.action === ShellActions.redirect) {
+      // TODO
+    }
+  }
+}

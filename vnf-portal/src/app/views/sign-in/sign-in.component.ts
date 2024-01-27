@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common'
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
-import { AuthService } from '../../services/auth.service'
 import { Store } from '@ngrx/store'
+import { LocalStorageKeys } from '../../enums/local-storage'
+import { AuthService } from '../../services/auth.service'
 import { setLoggedInUser } from '../../stores/actions/user.actions'
 
 @Component({
@@ -41,7 +42,7 @@ export class SignInComponent {
       this.authService.signIn(username, password).subscribe((res) => {
         if (res.success) {
           const { accessToken, user } = res.data
-          localStorage.setItem('accessToken', accessToken)
+          localStorage.setItem(LocalStorageKeys.authorization, accessToken)
           this.storeService.dispatch(setLoggedInUser(user))
         }
       })

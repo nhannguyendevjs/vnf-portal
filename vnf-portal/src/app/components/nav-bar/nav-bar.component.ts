@@ -23,7 +23,6 @@ export class NavBarComponent implements OnDestroy {
       .user.pipe(takeUntil(this.#destroy$))
       .subscribe((user) => {
         this.currentUser = user
-        console.log(this.currentUser)
       })
   }
 

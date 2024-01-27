@@ -8,6 +8,7 @@ import { InnerComponent } from './layouts/inner/inner.component'
 import { OuterComponent } from './layouts/outer/outer.component'
 import { AppSelectors } from './stores/app-selector'
 import { CommonModule } from '@angular/common'
+import { AuthUser } from './types/auth'
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,16 @@ export class AppComponent implements OnInit, OnDestroy {
   #swUpdate = inject(SwUpdate)
   #translocoService = inject(TranslocoService)
   #router = inject(Router)
+
+  currentUser!: AuthUser
+
+  constructor() {
+    AppSelectors()
+      .user.pipe(takeUntil(this.#destroy$))
+      .subscribe((user) => {
+        this.currentUser = user
+      })
+  }
 
   ngOnInit() {
     this.#registerServiceWorkerUpgrade()

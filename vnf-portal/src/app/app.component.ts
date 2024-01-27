@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common'
-import { Component, OnDestroy, OnInit, inject } from '@angular/core'
+import { Component, OnDestroy, inject } from '@angular/core'
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
+import { Store } from '@ngrx/store'
 import { Subject, takeUntil, timer } from 'rxjs'
 import { LocalStorageKeys } from './enums/local-storage'
 import { environment } from './environments/environment'
 import { InnerComponent } from './layouts/inner/inner.component'
 import { OuterComponent } from './layouts/outer/outer.component'
+import { AuthService } from './services/auth.service'
+import * as UserActions from './stores/actions/user.actions'
 
 @Component({
   selector: 'app-root',
@@ -15,17 +18,31 @@ import { OuterComponent } from './layouts/outer/outer.component'
   imports: [CommonModule, RouterOutlet, OuterComponent, InnerComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
-  #destroy$ = new Subject<void>()
-
+export class AppComponent implements OnDestroy {
   #swUpdate = inject(SwUpdate)
   #translocoService = inject(TranslocoService)
   #router = inject(Router)
+  #authService = inject(AuthService)
+  #appStore = inject(Store)
 
-  ngOnInit() {
+  #destroy$ = new Subject<void>()
+
+  constructor() {
     this.#registerServiceWorkerUpgrade()
     this.#registerRouterEvents()
     this.#detectLocalLanguage()
+    this.#loadCurrentUser();
+  }
+
+  #loadCurrentUser() {
+    if (this.#authService.isSignedIn()) {
+      this.#authService.me().subscribe((res) => {
+        if (res.success) {
+          const user = res.data
+          this.#appStore.dispatch(UserActions.setUser(user))
+        }
+      })
+    }
   }
 
   #registerRouterEvents() {

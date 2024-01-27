@@ -10,6 +10,12 @@
 @import './styles/common/variables';
 @import './styles/common/scrollbar';
 
+// Keyframes
+@import './styles/keyframes/loader';
+
+// Animations
+@import './styles/animations/spinner';
+
 // Mixins
 @import './styles/mixins/loading';
 

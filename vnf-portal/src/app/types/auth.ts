@@ -1,4 +1,4 @@
-export type AuthUser = {
+export type User = {
   id: string
   name: string
   email: string
@@ -9,10 +9,15 @@ export type AuthUser = {
   accountId: string
 }
 
-export type AuthSignInResponse = {
+export type SignInResponse = {
   success: boolean
   data: {
     accessToken: string
-    user: AuthUser
+    user: User
   }
+}
+
+export type MeResponse = {
+  success: boolean
+  data: User
 }

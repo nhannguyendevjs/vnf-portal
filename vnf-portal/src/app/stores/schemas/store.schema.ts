@@ -1,5 +1,5 @@
-import { AuthUser } from '../../types/auth'
+import * as AuthSchemas from '../../types/auth'
 
 export type AppStore = {
-  user: AuthUser
+  user: AuthSchemas.User
 }

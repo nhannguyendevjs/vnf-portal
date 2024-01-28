@@ -24,11 +24,11 @@
       "dom"
     ],
     "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "noImplicitThis": false,
     "useUnknownInCatchVariables": false,
-    "strictPropertyInitialization": false,
     "skipDefaultLibCheck": true,
   },
   "angularCompilerOptions": {

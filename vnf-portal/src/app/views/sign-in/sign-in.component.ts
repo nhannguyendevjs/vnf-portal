@@ -3,6 +3,10 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { VnfButtonDirective } from '../../directives/vnf-button.directive'
+import { VnfErrorMessageDirective } from '../../directives/vnf-error-message.directive'
+import { VnfInputDirective } from '../../directives/vnf-input.directive'
+import { VnfLabelDirective } from '../../directives/vnf-label.directive'
 import { LocalStorageKeys } from '../../enums/local-storage'
 import { ShellActions } from '../../enums/shell'
 import { AuthService } from '../../services/auth.service'
@@ -12,7 +16,7 @@ import { AppStore } from '../../types/store.schema'
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, VnfButtonDirective, VnfInputDirective, VnfErrorMessageDirective, VnfLabelDirective],
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

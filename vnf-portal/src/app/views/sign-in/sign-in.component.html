@@ -2,8 +2,8 @@
   <h1 class="text-4xl font-medium">Sign In</h1>
 
   <form class="flex flex-col justify-center items-center gap-4" [formGroup]="signInForm" (submit)="onSubmit()">
-    <section class="flex flex-col justify-center items-center">
-      <label for="username" vnfLabel label="Username" required></label>
+    <section class="flex flex-col justify-center items-start">
+      <label for="username" vnfLabel label="Username:" required></label>
       <p
         *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']"
         vnfErrorMessage
@@ -12,8 +12,8 @@
       <input type="text" name="username" id="username" autocomplete="off" formControlName="username" autofocus required vnfInput />
     </section>
 
-    <section class="flex flex-col justify-center items-center">
-      <label for="password" vnfLabel label="Password" required></label>
+    <section class="flex flex-col justify-center items-start">
+      <label for="password" vnfLabel label="Password:" required></label>
       <p
         *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']"
         vnfErrorMessage
@@ -22,7 +22,10 @@
       <input #inputPassword type="password" name="password" id="password" autocomplete="off" formControlName="password" required vnfInput />
     </section>
 
-    <section><input type="checkbox" vnfInput inputType="checkbox" (click)="showHidePassword()" /> Show Password</section>
+    <section class="self-start">
+      <input type="checkbox" id="showHidePassword" name="showHidePassword" vnfInput inputType="checkbox" (click)="showHidePassword()" />
+      <label for="showHidePassword" vnfLabel label="&nbsp;Show Password"></label>
+    </section>
 
     <section class="flex flex-col justify-center items-center">
       <button type="submit" vnfButton btnType="primary">Sign In</button>

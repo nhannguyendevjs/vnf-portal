@@ -1,13 +1,25 @@
 import { Routes } from '@angular/router'
+import { authGuard } from './guards/auth.guard'
 
 export const routes: Routes = [
   {
-    path: 'sign-in',
-    loadChildren: () => import('./views/sign-in/sign-in.routes').then((m) => m.routes),
+    path: 'settings',
+    loadChildren: () => import('./views/settings/settings.routes').then((m) => m.routes),
+    canActivate: [authGuard],
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./views/dashboard/dashboard.routes').then((m) => m.routes),
+    path: 'users',
+    loadChildren: () => import('./views/users/users.routes').then((m) => m.routes),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./views/home/home.routes').then((m) => m.routes),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./views/sign-in/sign-in.routes').then((m) => m.routes),
   },
   {
     path: 'shell',
@@ -15,7 +27,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'shell',
     pathMatch: 'full',
   },
   {

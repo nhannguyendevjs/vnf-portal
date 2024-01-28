@@ -38,3 +38,13 @@ npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid z
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge
 npx tailwindcss init
 ```
+
+## Docker Build
+
+```bash
+docker network create vnf-network
+docker run --network vnf-network --name vnf-portal-ubuntu -p 80:8080 -p 443:8443 -p 22:22 -itd ubuntu:latest
+docker build . -t vnf-portal:latest
+docker run -d -p 80:80 --network vnf-network --name vnf-portal vnf-portal:latest
+docker-compose up
+```

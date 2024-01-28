@@ -21,5 +21,10 @@ export class NavListComponent {
       path: '/users',
       selected: false,
     },
+    {
+      label: 'Settings',
+      path: '/settings',
+      selected: false,
+    },
   ]
 }

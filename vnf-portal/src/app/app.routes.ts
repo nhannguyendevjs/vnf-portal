@@ -3,6 +3,11 @@ import { authGuard } from './guards/auth.guard'
 
 export const routes: Routes = [
   {
+    path: 'settings',
+    loadChildren: () => import('./views/settings/settings.routes').then((m) => m.routes),
+    canActivate: [authGuard],
+  },
+  {
     path: 'users',
     loadChildren: () => import('./views/users/users.routes').then((m) => m.routes),
     canActivate: [authGuard],

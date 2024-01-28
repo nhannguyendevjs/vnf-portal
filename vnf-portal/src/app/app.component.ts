@@ -11,6 +11,7 @@ import { InnerComponent } from './layouts/inner/inner.component'
 import { OuterComponent } from './layouts/outer/outer.component'
 import { AuthService } from './services/auth.service'
 import * as UserActions from './stores/actions/user.actions'
+import { AppStore } from './types/store.schema'
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class AppComponent implements OnDestroy {
   #translocoService = inject(TranslocoService)
   #router = inject(Router)
   #authService = inject(AuthService)
-  #appStore = inject(Store)
+  #appStore = inject(Store) as Store<AppStore>
 
   #destroy$ = new Subject<void>()
 
@@ -31,7 +32,7 @@ export class AppComponent implements OnDestroy {
     this.#registerServiceWorkerUpgrade()
     this.#registerRouterEvents()
     this.#detectLocalLanguage()
-    this.#loadCurrentUser();
+    this.#loadCurrentUser()
   }
 
   #loadCurrentUser() {

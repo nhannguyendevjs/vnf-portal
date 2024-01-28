@@ -5,13 +5,13 @@
 </nav>
 
 <ng-template #menu>
-  <div class="flex flex-col gap-4 p-4 bg-gray-50 border-gray-200 border-[1px] rounded-md" cdkMenu>
-    <button *ngIf="!currentUser()" class="text-left" cdkMenuItem [routerLink]="['/sign-in']">Sign in</button>
+  <div class="flex flex-col gap-4 bg-gray-50 border-gray-200 border-[1px] rounded-md" cdkMenu>
+    <button *ngIf="!currentUser()" class="text-left p-4" cdkMenuItem [routerLink]="['/sign-in']">Sign in</button>
 
     <ng-container *ngIf="currentUser()">
-      <button class="text-left" cdkMenuItem>{{ currentUser().name }} | {{ currentUser().role | uppercase }}</button>
-      <button class="text-left" cdkMenuItem>Settings</button>
-      <button class="text-left" cdkMenuItem (click)="signOut()">Sign out</button>
+      <button class="text-left px-4 pt-4" cdkMenuItem>{{ currentUser().name }} | {{ currentUser().role | uppercase }}</button>
+      <button class="text-left px-4" cdkMenuItem>Settings</button>
+      <button class="text-left px-4 pb-4" cdkMenuItem (click)="signOut()">Sign out</button>
     </ng-container>
   </div>
 </ng-template>

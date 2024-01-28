@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store'
 import { Subject, takeUntil } from 'rxjs'
 import * as UserActions from '../../stores/actions/user.actions'
 import { AppSelectors } from '../../stores/app-selector'
-import { AppStore } from '../../stores/schemas/store.schema'
+import { AppStore } from '../../types/store.schema'
 import * as AuthSchemas from '../../types/auth'
 
 @Component({

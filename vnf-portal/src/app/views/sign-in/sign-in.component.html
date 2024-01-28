@@ -2,7 +2,7 @@
   <h1 class="text-4xl font-medium">Sign In</h1>
 
   <form class="flex flex-col justify-center items-center gap-4" [formGroup]="signInForm" (submit)="onSubmit()">
-    <div class="flex flex-col justify-center items-center">
+    <section class="flex flex-col justify-center items-center">
       <label for="username" vnfLabel label="Username" required></label>
       <p
         *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']"
@@ -10,20 +10,22 @@
         errorMessage="Username is required."
       ></p>
       <input type="text" name="username" id="username" autocomplete="off" formControlName="username" autofocus required vnfInput />
-    </div>
+    </section>
 
-    <div class="flex flex-col justify-center items-center">
+    <section class="flex flex-col justify-center items-center">
       <label for="password" vnfLabel label="Password" required></label>
       <p
         *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']"
         vnfErrorMessage
         errorMessage="Username is required."
       ></p>
-      <input type="password" name="password" id="password" autocomplete="off" formControlName="password" required vnfInput />
-    </div>
+      <input #inputPassword type="password" name="password" id="password" autocomplete="off" formControlName="password" required vnfInput />
+    </section>
 
-    <div class="flex flex-col justify-center items-center">
+    <section><input type="checkbox" vnfInput inputType="checkbox" (click)="showHidePassword()" /> Show Password</section>
+
+    <section class="flex flex-col justify-center items-center">
       <button type="submit" vnfButton btnType="primary">Sign In</button>
-    </div>
+    </section>
   </form>
 </div>

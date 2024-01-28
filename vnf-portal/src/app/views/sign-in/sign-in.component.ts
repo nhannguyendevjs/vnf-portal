@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, ViewChild, inject } from '@angular/core'
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
@@ -25,6 +25,9 @@ export class SignInComponent {
   #appStore = inject(Store) as Store<AppStore>
   #router = inject(Router)
   #formBuilder = inject(FormBuilder)
+  #renderer = inject(Renderer2)
+
+  @ViewChild('inputPassword') inputPassword!: ElementRef<HTMLInputElement>
 
   signInForm = this.#formBuilder.group({
     username: new FormControl('', Validators.required),
@@ -60,6 +63,16 @@ export class SignInComponent {
           this.#router.navigate(['/'], { queryParams: { action: ShellActions.signIn } })
         }
       })
+    }
+  }
+
+  showHidePassword() {
+    const passwordInput = document.getElementById('password') as HTMLInputElement
+
+    if (passwordInput.type === 'password') {
+      this.#renderer.setAttribute(this.inputPassword.nativeElement, 'type', 'text')
+    } else {
+      this.#renderer.setAttribute(this.inputPassword.nativeElement, 'type', 'password')
     }
   }
 }

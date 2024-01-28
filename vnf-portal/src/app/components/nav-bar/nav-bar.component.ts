@@ -1,6 +1,6 @@
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu'
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core'
 import { Router, RouterLink } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Subject, takeUntil } from 'rxjs'
@@ -22,13 +22,13 @@ export class NavBarComponent implements OnDestroy {
 
   #destroy$ = new Subject<void>()
 
-  currentUser!: AuthSchemas.User
+  currentUser = signal<AuthSchemas.User>(null)
 
   constructor() {
     AppSelectors()
       .user.pipe(takeUntil(this.#destroy$))
       .subscribe((user) => {
-        this.currentUser = user
+        this.currentUser.set(user)
       })
   }
 

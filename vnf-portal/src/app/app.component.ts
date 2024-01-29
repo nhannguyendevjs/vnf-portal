@@ -12,7 +12,7 @@ import { OuterComponent } from './layouts/outer/outer.component'
 import { AuthService } from './services/auth.service'
 import * as UserActions from './stores/actions/user.actions'
 import { AppSelectors } from './stores/app-selector'
-import { AppStore } from './types/store.schema'
+import { AppStore } from './types/store'
 
 @Component({
   selector: 'app-root',

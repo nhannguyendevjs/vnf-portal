@@ -1,27 +1,27 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
 import { VnfInputType } from '../types/vnf'
 
 @Directive({
   selector: '[vnfInput]',
   standalone: true,
 })
-export class VnfInputDirective implements OnChanges {
+export class VnfInputDirective implements AfterViewInit, OnChanges {
   #el = inject(ElementRef)
-  #renderer = inject(Renderer2)
+  renderer = inject(Renderer2)
 
   @Input() inputType!: VnfInputType
 
-  constructor() {
-    this.#appendBtnClassNames()
+  ngAfterViewInit() {
+    this.updateBtnClassNames()
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['inputType']) {
-      this.#checkInputType()
+      this.checkInputType()
     }
   }
 
-  #appendBtnClassNames() {
+  updateBtnClassNames() {
     const classNames = [
       'vnf-input',
       'min-w-6',
@@ -37,16 +37,16 @@ export class VnfInputDirective implements OnChanges {
     ]
 
     classNames.forEach((className) => {
-      this.#renderer.addClass(this.#el.nativeElement, className)
+      this.renderer.addClass(this.#el.nativeElement, className)
     })
   }
 
-  #checkInputType() {
+  checkInputType() {
     const checkboxClassNames = ['w-6', 'h-6', 'relative', 'top-[6px]', 'accent-gray-600']
 
     if (this.inputType === 'checkbox') {
       checkboxClassNames.forEach((className) => {
-        this.#renderer.addClass(this.#el.nativeElement, className)
+        this.renderer.addClass(this.#el.nativeElement, className)
       })
     }
   }

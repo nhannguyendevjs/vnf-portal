@@ -12,7 +12,7 @@ import { LocalStorageKeys } from '../../enums/local-storage'
 import { ShellActions } from '../../enums/shell'
 import { AuthService } from '../../services/auth.service'
 import * as UserActions from '../../stores/actions/user.actions'
-import { AppStore } from '../../types/store.schema'
+import { AppStore } from '../../types/store'
 
 @Component({
   selector: 'app-sign-in',

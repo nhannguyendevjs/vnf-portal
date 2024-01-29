@@ -7,4 +7,7 @@ export const APIs = {
     signIn: ROOT_URL + '/auth/sign-in',
     me: ROOT_URL + '/auth/me',
   },
+  users: {
+    search: ROOT_URL + '/users/search',
+  },
 }

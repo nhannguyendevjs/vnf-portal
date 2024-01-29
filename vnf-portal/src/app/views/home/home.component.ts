@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common'
 import { ChangeDetectionStrategy, Component, OnDestroy, signal } from '@angular/core'
 import { Subject, takeUntil } from 'rxjs'
 import { AppSelectors } from '../../stores/app-selector'
-import * as AuthSchemas from '../../types/auth'
+import * as AuthTypes from '../../types/auth'
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ import * as AuthSchemas from '../../types/auth'
 export class HomeComponent implements OnDestroy {
   #destroy$ = new Subject<void>()
 
-  currentUser = signal<AuthSchemas.User>(null)
+  currentUser = signal<AuthTypes.User>(null)
 
   constructor() {
     AppSelectors()

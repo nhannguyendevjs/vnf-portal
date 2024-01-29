@@ -1,18 +1,18 @@
-import { HttpErrorResponse, HttpHandlerFn, HttpRequest, HttpResponse } from '@angular/common/http'
+import { HttpErrorResponse, HttpHandlerFn, HttpRequest } from '@angular/common/http'
 import { inject } from '@angular/core'
 import { Router } from '@angular/router'
-import { catchError } from 'rxjs'
+import { catchError, throwError } from 'rxjs'
 
 export function AuthInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   const router = inject(Router)
 
   return next(req).pipe(
     catchError((event) => {
-      if (event instanceof HttpErrorResponse && event.status === 401) {
+      if (event instanceof HttpErrorResponse && event.status === 401 && !router.url.includes('/sign-in')) {
         router.navigate(['/sign-in'])
       }
 
-      return event
+      return throwError(() => event.error)
     })
   ) as any
 }

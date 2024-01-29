@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component, OnDestroy, inject } from '@angular/core'
+import { Component, OnDestroy, inject, signal } from '@angular/core'
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
@@ -11,7 +11,8 @@ import { InnerComponent } from './layouts/inner/inner.component'
 import { OuterComponent } from './layouts/outer/outer.component'
 import { AuthService } from './services/auth.service'
 import * as UserActions from './stores/actions/user.actions'
-import { AppStore } from './types/store.schema'
+import { AppSelectors } from './stores/app-selector'
+import { AppStore } from './types/store'
 
 @Component({
   selector: 'app-root',
@@ -28,11 +29,22 @@ export class AppComponent implements OnDestroy {
 
   #destroy$ = new Subject<void>()
 
+  isSignedIn = signal(this.#authService.isSignedIn())
+
   constructor() {
     this.#registerServiceWorkerUpgrade()
     this.#registerRouterEvents()
     this.#detectLocalLanguage()
+    this.#registerStoreUser()
     this.#loadCurrentUser()
+  }
+
+  #registerStoreUser() {
+    AppSelectors()
+      .user.pipe(takeUntil(this.#destroy$))
+      .subscribe((user) => {
+        this.isSignedIn.set(!!user)
+      })
   }
 
   #loadCurrentUser() {

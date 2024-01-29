@@ -1,27 +1,27 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
 import { VnfButtonType } from '../types/vnf'
 
 @Directive({
   selector: '[vnfButton]',
   standalone: true,
 })
-export class VnfButtonDirective implements OnChanges {
+export class VnfButtonDirective implements AfterViewInit, OnChanges {
   #el = inject(ElementRef)
   #renderer = inject(Renderer2)
 
   @Input() btnType!: VnfButtonType
 
-  constructor() {
-    this.#appendBtnClassNames()
+  ngAfterViewInit() {
+    this.updateBtnClassNames()
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['btnType']) {
-      this.#checkBtnType()
+      this.checkBtnType()
     }
   }
 
-  #appendBtnClassNames() {
+  updateBtnClassNames() {
     const classNames = ['vnf-button', 'rounded-md', 'px-4', 'py-2']
 
     classNames.forEach((className) => {
@@ -29,7 +29,7 @@ export class VnfButtonDirective implements OnChanges {
     })
   }
 
-  #checkBtnType() {
+  checkBtnType() {
     switch (this.btnType) {
       case 'primary':
         this.#renderer.addClass(this.#el.nativeElement, 'bg-gray-600')

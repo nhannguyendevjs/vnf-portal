@@ -1,26 +1,26 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, inject } from '@angular/core'
 
 @Directive({
   selector: '[vnfErrorMessage]',
   standalone: true,
 })
-export class VnfErrorMessageDirective implements OnChanges {
+export class VnfErrorMessageDirective implements AfterViewInit, OnChanges {
   #el = inject(ElementRef)
   #renderer = inject(Renderer2)
 
   @Input() errorMessage!: string
 
-  constructor() {
-    this.#appendBtnClassNames()
+  ngAfterViewInit() {
+    this.updateBtnClassNames()
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['errorMessage']) {
-      this.#renderErrorMessage()
+      this.renderErrorMessage()
     }
   }
 
-  #appendBtnClassNames() {
+  updateBtnClassNames() {
     const classNames = ['vnf-error-message', 'text-red-600', 'text-sm']
 
     classNames.forEach((className) => {
@@ -28,7 +28,7 @@ export class VnfErrorMessageDirective implements OnChanges {
     })
   }
 
-  #renderErrorMessage() {
+  renderErrorMessage() {
     this.#renderer.setProperty(this.#el.nativeElement, 'innerText', this.errorMessage)
   }
 }

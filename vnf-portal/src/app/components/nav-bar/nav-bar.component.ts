@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store'
 import { Subject, takeUntil } from 'rxjs'
 import * as UserActions from '../../stores/actions/user.actions'
 import { AppSelectors } from '../../stores/app-selector'
-import { AppStore } from '../../types/store.schema'
-import * as AuthSchemas from '../../types/auth'
+import { AppStore } from '../../types/store'
+import * as AuthTypes from '../../types/auth'
 
 @Component({
   selector: 'app-nav-bar',
@@ -22,7 +22,7 @@ export class NavBarComponent implements OnDestroy {
 
   #destroy$ = new Subject<void>()
 
-  currentUser = signal<AuthSchemas.User>(null)
+  currentUser = signal<AuthTypes.User>(null)
 
   constructor() {
     AppSelectors()

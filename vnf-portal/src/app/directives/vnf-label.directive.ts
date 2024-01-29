@@ -1,27 +1,27 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, booleanAttribute, inject } from '@angular/core'
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, booleanAttribute, inject } from '@angular/core'
 
 @Directive({
   selector: '[vnfLabel]',
   standalone: true,
 })
-export class VnfLabelDirective implements OnChanges {
+export class VnfLabelDirective implements AfterViewInit, OnChanges {
   #el = inject(ElementRef)
   #renderer = inject(Renderer2)
 
   @Input() label!: string
   @Input({ transform: booleanAttribute }) required!: boolean
 
-  constructor() {
-    this.#appendBtnClassNames()
+  ngAfterViewInit() {
+    this.updateBtnClassNames()
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['label']) {
-      this.#renderLabel()
+      this.renderLabel()
     }
   }
 
-  #appendBtnClassNames() {
+  updateBtnClassNames() {
     const classNames = ['vnf-label', 'font-medium']
 
     classNames.forEach((className) => {
@@ -29,7 +29,7 @@ export class VnfLabelDirective implements OnChanges {
     })
   }
 
-  #renderLabel() {
+  renderLabel() {
     this.#renderer.setProperty(this.#el.nativeElement, 'innerText', this.label)
 
     if (this.required) {

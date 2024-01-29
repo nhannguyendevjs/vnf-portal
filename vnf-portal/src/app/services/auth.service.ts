@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { APIs } from '../enums/api'
+import { LocalStorageKeys } from '../enums/local-storage'
 import * as AuthSchemas from '../types/auth'
 
 @Injectable({
@@ -10,7 +11,7 @@ export class AuthService {
   #http = inject(HttpClient)
 
   isSignedIn() {
-    const accessToken = localStorage.getItem('authorization')
+    const accessToken = localStorage.getItem(LocalStorageKeys.authorization)
 
     return !!accessToken
   }

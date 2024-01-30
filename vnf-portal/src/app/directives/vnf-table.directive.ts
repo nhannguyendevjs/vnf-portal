@@ -23,9 +23,8 @@ export class VnfTableDirective implements AfterViewInit {
   }
 
   updateTableHeadClassNames() {
-    const classNames = ['border-b', 'border-gray-100', 'font-medium', 'p-4', 'pl-8', 'text-gray-600', 'text-left']
+    const classNames = ['bg-white', 'border-b', 'border-gray-100', 'font-medium', 'p-4', 'pl-8', 'text-gray-600', 'text-left', 'sticky', 'top-0']
 
-    console.log(this.#el.nativeElement)
     this.#el.nativeElement.querySelectorAll('th').forEach((th) => {
       classNames.forEach((className) => {
         this.#renderer.addClass(th, className)

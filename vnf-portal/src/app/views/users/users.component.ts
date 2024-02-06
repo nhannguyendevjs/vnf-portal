@@ -17,9 +17,9 @@ import { CdkDataSource } from '../../utils/cdk/data-source'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent {
-  #usersService = inject(UsersService)
-
   @ViewChild(VnfTableDirective) vnfTable!: VnfTableDirective
+
+  #usersService = inject(UsersService)
 
   displayedColumns = UsersColumns
   dataSource = new CdkDataSource<User>()

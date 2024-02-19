@@ -24,14 +24,20 @@ export class UsersComponent {
   displayedColumns = UsersColumns
   dataSource = new CdkDataSource<User>()
 
+  searchValue = ''
+
   constructor() {
     this.loadUsers()
+  }
+
+  clearUsers() {
+    this.dataSource.data.next([])
   }
 
   loadUsers() {
     this.#usersService.search().subscribe((res) => {
       if (res.success) {
-        this.dataSource.data.next([
+        const users = [
           ...this.dataSource.data.value,
           ...res.data,
           ...res.data,
@@ -42,10 +48,30 @@ export class UsersComponent {
           ...res.data,
           ...res.data,
           ...res.data,
-        ])
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+          ...res.data,
+        ]
+
+        this.dataSource.data.next(users.filter((user) => user.name.toLowerCase().includes(this.searchValue.toLowerCase())))
+
         this.vnfTable.updateTableRowClassNames()
         this.vnfTable.updateTableDataClassNames()
       }
     })
+  }
+
+  onSearch(event) {
+    this.searchValue = event.target.value
+    this.clearUsers()
+    this.loadUsers()
   }
 }

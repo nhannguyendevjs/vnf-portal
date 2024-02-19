@@ -32,7 +32,7 @@
       <!-- Role Column -->
       <ng-container cdkColumnDef="role">
         <th cdk-header-cell *cdkHeaderCellDef>Role</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.role }}</td>
+        <td cdk-cell *cdkCellDef="let element">{{ element.role | uppercase }}</td>
       </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>

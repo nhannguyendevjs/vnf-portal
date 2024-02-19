@@ -11,6 +11,7 @@ export class VnfTableDirective implements AfterViewInit {
   ngAfterViewInit() {
     this.updateTableClassNames()
     this.updateTableHeadClassNames()
+    this.updateTableRowClassNames()
     this.updateTableDataClassNames()
   }
 
@@ -29,6 +30,18 @@ export class VnfTableDirective implements AfterViewInit {
       classNames.forEach((className) => {
         this.#renderer.addClass(th, className)
       })
+    })
+  }
+
+  updateTableRowClassNames() {
+    const classNames = ['hover:bg-gray-100']
+
+    this.#el.nativeElement.querySelectorAll('tr').forEach((tr, index) => {
+      if (index > 0) {
+        classNames.forEach((className) => {
+          this.#renderer.addClass(tr, className)
+        })
+      }
     })
   }
 

@@ -43,6 +43,7 @@ export class UsersComponent {
           ...res.data,
           ...res.data,
         ])
+        this.vnfTable.updateTableRowClassNames()
         this.vnfTable.updateTableDataClassNames()
       }
     })

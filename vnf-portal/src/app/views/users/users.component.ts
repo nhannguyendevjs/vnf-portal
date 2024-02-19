@@ -1,6 +1,6 @@
 import { CdkTableModule } from '@angular/cdk/table'
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, inject } from '@angular/core'
 import { VnfInfiniteScrollDirective } from '../../directives/vnf-infinite-scroll.directive'
 import { VnfInputDirective } from '../../directives/vnf-input.directive'
 import { VnfTableDirective } from '../../directives/vnf-table.directive'
@@ -18,6 +18,7 @@ import { CdkDataSource } from '../../utils/cdk/data-source'
 })
 export class UsersComponent {
   @ViewChild(VnfTableDirective) vnfTable!: VnfTableDirective
+  @ViewChild('inputSearch') inputSearch!: ElementRef<HTMLInputElement>
 
   #usersService = inject(UsersService)
 
@@ -71,6 +72,13 @@ export class UsersComponent {
 
   onSearch(event) {
     this.searchValue = event.target.value
+    this.clearUsers()
+    this.loadUsers()
+  }
+
+  onClearSearch() {
+    this.searchValue = ''
+    this.inputSearch.nativeElement.value = ''
     this.clearUsers()
     this.loadUsers()
   }

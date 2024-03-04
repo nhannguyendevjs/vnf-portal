@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, ViewChild, inject, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, inject, signal, viewChild } from '@angular/core'
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { VnfButtonDirective } from '../../directives/vnf-button.directive'
-import { VnfErrorMessageDirective } from '../../directives/vnf-error-message.directive'
-import { VnfInputDirective } from '../../directives/vnf-input.directive'
-import { VnfLabelDirective } from '../../directives/vnf-label.directive'
-import { VnfNotificationDirective } from '../../directives/vnf-notification.directive'
+import { VNFButtonComponent } from '../../components/vnf-button/vnf-button.component'
+import { VNFErrorMessageComponent } from '../../components/vnf-error-message/vnf-error-message.component'
+import { VNFInputComponent } from '../../components/vnf-input/vnf-input.component'
+import { VNFLabelComponent } from '../../components/vnf-label/vnf-label.component'
+import { VNFNotificationComponent } from '../../components/vnf-notification/vnf-notification.component'
 import { LocalStorageKeys } from '../../enums/local-storage'
 import { ShellActions } from '../../enums/shell'
 import { AuthService } from '../../services/auth.service'
@@ -17,7 +17,7 @@ import { AppStore } from '../../types/store'
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, VnfButtonDirective, VnfInputDirective, VnfErrorMessageDirective, VnfLabelDirective, VnfNotificationDirective],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, VNFErrorMessageComponent, VNFLabelComponent, VNFNotificationComponent, VNFInputComponent, VNFButtonComponent],
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -30,7 +30,7 @@ export class SignInComponent {
 
   errorMessage = signal<string>('')
 
-  @ViewChild('inputPassword') inputPassword!: ElementRef<HTMLInputElement>
+  inputPassword = viewChild.required<ElementRef<HTMLInputElement>>('inputPassword')
 
   signInForm = this.#formBuilder.group({
     username: new FormControl('', Validators.required),
@@ -58,6 +58,7 @@ export class SignInComponent {
 
     if (this.signInForm.valid) {
       const { username, password } = this.signInForm.value
+
       this.#authService.signIn(username, password).subscribe({
         next: (res) => {
           if (res.success) {
@@ -78,9 +79,9 @@ export class SignInComponent {
     const passwordInput = document.getElementById('password') as HTMLInputElement
 
     if (passwordInput.type === 'password') {
-      this.#renderer.setAttribute(this.inputPassword.nativeElement, 'type', 'text')
+      this.#renderer.setAttribute(this.inputPassword().nativeElement, 'type', 'text')
     } else {
-      this.#renderer.setAttribute(this.inputPassword.nativeElement, 'type', 'password')
+      this.#renderer.setAttribute(this.inputPassword().nativeElement, 'type', 'password')
     }
   }
 }

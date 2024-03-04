@@ -2,15 +2,15 @@ import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/c
 
 /**
  * @example
-  <div class="scrollable-content" vnfInfiniteScroll (scrolled)="loadMoreData()">
+  <div class="scrollable-content" infiniteScroll (scrolled)="loadMoreData()">
     <!-- Your list of items -->
   </div>
  */
 @Directive({
-  selector: '[vnfInfiniteScroll]',
+  selector: '[infiniteScroll]',
   standalone: true,
 })
-export class VnfInfiniteScrollDirective {
+export class InfiniteScrollDirective {
   @Input() scrollThreshold = 0
   @Output() scrolled = new EventEmitter<void>()
 

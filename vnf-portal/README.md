@@ -35,7 +35,7 @@ ng add @angular/material
 ng add @angular/pwa
 ng add @ngneat/transloco
 npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod
-npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge
+npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init
 ```
 

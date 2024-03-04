@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, OnDestroy, signal } from '@angular/core'
-import { Subject, takeUntil } from 'rxjs'
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { AppSelectors } from '../../stores/app-selector'
 import * as AuthTypes from '../../types/auth'
 
@@ -11,21 +11,16 @@ import * as AuthTypes from '../../types/auth'
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnDestroy {
-  #destroy$ = new Subject<void>()
+export class HomeComponent {
+  destroyRef = inject(DestroyRef)
 
   currentUser = signal<AuthTypes.User>(null)
 
   constructor() {
     AppSelectors()
-      .user.pipe(takeUntil(this.#destroy$))
+      .user.pipe(takeUntilDestroyed())
       .subscribe((user) => {
         this.currentUser.set(user)
       })
-  }
-
-  ngOnDestroy() {
-    this.#destroy$.next()
-    this.#destroy$.complete()
   }
 }

@@ -1,2 +1,3 @@
-export type VnfButtonType = 'basic' | 'primary' | 'accent' | 'warn'
-export type VnfInputType = 'input' | 'checkbox'
+export type VNFButtonColor = 'basic' | 'primary' | 'accent' | 'warn'
+export type VNFInputType = 'input' | 'checkbox'
+export type VNFNotificationType = 'error' | 'warning' | 'success' | 'info'

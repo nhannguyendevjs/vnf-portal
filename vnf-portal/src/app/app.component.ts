@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common'
-import { Component, OnDestroy, inject, signal } from '@angular/core'
+import { Component, DestroyRef, inject, signal } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
 import { TranslocoService } from '@ngneat/transloco'
 import { Store } from '@ngrx/store'
-import { Subject, takeUntil, timer } from 'rxjs'
+import { timer } from 'rxjs'
 import { LocalStorageKeys } from './enums/local-storage'
 import { environment } from './environments/environment'
 import { InnerComponent } from './layouts/inner/inner.component'
@@ -20,14 +21,13 @@ import { AppStore } from './types/store'
   imports: [CommonModule, RouterOutlet, OuterComponent, InnerComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   #swUpdate = inject(SwUpdate)
   #translocoService = inject(TranslocoService)
   #router = inject(Router)
   #authService = inject(AuthService)
   #appStore = inject(Store) as Store<AppStore>
-
-  #destroy$ = new Subject<void>()
+  destroyRef = inject(DestroyRef)
 
   isSignedIn = signal(this.#authService.isSignedIn())
 
@@ -41,7 +41,7 @@ export class AppComponent implements OnDestroy {
 
   #registerStoreUser() {
     AppSelectors()
-      .user.pipe(takeUntil(this.#destroy$))
+      .user.pipe(takeUntilDestroyed())
       .subscribe((user) => {
         this.isSignedIn.set(!!user)
       })
@@ -59,7 +59,7 @@ export class AppComponent implements OnDestroy {
   }
 
   #registerRouterEvents() {
-    this.#router.events.pipe(takeUntil(this.#destroy$)).subscribe((navigationEvent) => {
+    this.#router.events.pipe(takeUntilDestroyed()).subscribe((navigationEvent) => {
       if (navigationEvent instanceof NavigationEnd) {
         const { urlAfterRedirects } = navigationEvent
 
@@ -73,7 +73,7 @@ export class AppComponent implements OnDestroy {
   #registerServiceWorkerUpgrade() {
     if (this.#swUpdate.isEnabled) {
       timer(0, 60000)
-        .pipe(takeUntil(this.#destroy$))
+        .pipe(takeUntilDestroyed())
         .subscribe(() => {
           this.#swUpdate.checkForUpdate().then((res) => {
             if (res) {
@@ -91,10 +91,5 @@ export class AppComponent implements OnDestroy {
 
     this.#translocoService.setActiveLang(language)
     this.#translocoService.setFallbackLangForMissingTranslation({ fallbackLang: 'en' })
-  }
-
-  ngOnDestroy() {
-    this.#destroy$.next()
-    this.#destroy$.complete()
   }
 }

@@ -24,6 +24,10 @@
 @import './styles/components/nav-list';
 @import './styles/components/dialog';
 
+// VNF Components
+@import './styles/components/vnf/vnf-button';
+@import './styles/components/vnf/vnf-error-message';
+
 // Layouts
 @import './styles/layouts/outer';
 @import './styles/layouts/inner';

@@ -13,9 +13,7 @@
       <vnf-input>
         <input #vnf type="text" name="username" id="username" autocomplete="off" formControlName="username" autofocus required />
       </vnf-input>
-      <vnf-error-message *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']">
-        <p #vnf>Username is required.</p>
-      </vnf-error-message>
+      <p class="vnf-error-message" *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']">Username is required.</p>
     </section>
 
     <section class="flex flex-col justify-center items-start">
@@ -25,9 +23,7 @@
       <vnf-input>
         <input #vnf #inputPassword type="password" name="password" id="password" autocomplete="off" formControlName="password" required />
       </vnf-input>
-      <vnf-error-message *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">
-        <p #vnf>Password is required.</p>
-      </vnf-error-message>
+      <p class="vnf-error-message" *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">Password is required.</p>
     </section>
 
     <section class="self-start">
@@ -40,9 +36,7 @@
     </section>
 
     <section class="flex flex-col justify-center items-center">
-      <vnf-button>
-        <button #vnf type="submit" color="primary">Sign In</button>
-      </vnf-button>
+      <button class="vnf-button --primary" type="submit">Sign In</button>
     </section>
   </form>
 </div>

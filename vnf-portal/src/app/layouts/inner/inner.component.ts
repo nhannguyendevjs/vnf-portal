@@ -4,10 +4,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-inner',
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   templateUrl: './inner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InnerComponent { }
+export class InnerComponent {}

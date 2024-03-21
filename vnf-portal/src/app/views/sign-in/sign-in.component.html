@@ -1,48 +1,28 @@
 <div class="h-full w-full p-4 flex flex-col justify-center items-center gap-4">
   <h1 class="text-4xl font-medium">Sign In</h1>
 
-  <vnf-notification *ngIf="errorMessage()" type="error" [message]="errorMessage()">
-    <p #vnf></p>
-  </vnf-notification>
+  <p class="vnf-notification --error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
 
   <form class="flex flex-col justify-center items-center gap-4" [formGroup]="signInForm" (submit)="onSubmit()">
     <section class="flex flex-col justify-center items-start">
-      <vnf-label>
-        <label #vnf for="username" required>Username:</label>
-      </vnf-label>
-      <vnf-input>
-        <input #vnf type="text" name="username" id="username" autocomplete="off" formControlName="username" autofocus required />
-      </vnf-input>
-      <vnf-error-message *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']">
-        <p #vnf>Username is required.</p>
-      </vnf-error-message>
+      <label for="username" class="vnf-label --required">Username:</label>
+      <input class="vnf-input" type="text" name="username" id="username" autocomplete="off" formControlName="username" autofocus required />
+      <p class="vnf-error-message" *ngIf="signInForm.dirty && signInForm.get('username')?.touched && signInForm.get('username')?.errors?.['required']">Username is required.</p>
     </section>
 
     <section class="flex flex-col justify-center items-start">
-      <vnf-label>
-        <label #vnf for="password" required>Password:</label>
-      </vnf-label>
-      <vnf-input>
-        <input #vnf #inputPassword type="password" name="password" id="password" autocomplete="off" formControlName="password" required />
-      </vnf-input>
-      <vnf-error-message *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">
-        <p #vnf>Password is required.</p>
-      </vnf-error-message>
+      <label for="password" class="vnf-label --required">Password:</label>
+      <input class="vnf-input" #inputPassword type="password" name="password" id="password" autocomplete="off" formControlName="password" required />
+      <p class="vnf-error-message" *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">Password is required.</p>
     </section>
 
     <section class="self-start">
-      <vnf-input>
-        <input #vnf type="checkbox" id="show-hide-password" name="show-hide-password" vnfInput inputType="checkbox" (click)="showHidePassword()" />
-        <vnf-label>
-          <label #vnf for="showHidePassword" required>&nbsp;Show Password</label>
-        </vnf-label>
-      </vnf-input>
+      <input class="vnf-input" type="checkbox" id="show-hide-password" name="show-hide-password" vnfInput inputType="checkbox" (click)="showHidePassword()" />
+      <label for="showHidePassword" class="vnf-label --required">&nbsp;Show Password</label>
     </section>
 
     <section class="flex flex-col justify-center items-center">
-      <vnf-button>
-        <button #vnf type="submit" color="primary">Sign In</button>
-      </vnf-button>
+      <button class="vnf-button --primary" type="submit">Sign In</button>
     </section>
   </form>
 </div>

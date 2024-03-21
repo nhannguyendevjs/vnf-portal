@@ -1,6 +1,6 @@
 # VnfPortal
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
 
 ## Development server
 
@@ -34,7 +34,7 @@ ng new vnf-portal --standalone=true --style=scss --routing=true --skip-git=true 
 ng add @angular/material
 ng add @angular/pwa
 ng add @ngneat/transloco
-npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod
+npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init
 ```

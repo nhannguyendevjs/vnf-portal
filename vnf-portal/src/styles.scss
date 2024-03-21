@@ -22,6 +22,15 @@
 // Components
 @import './styles/components/nav-bar';
 @import './styles/components/nav-list';
+@import './styles/components/dialog';
+
+// VNF Components
+@import './styles/components/vnf/vnf-button';
+@import './styles/components/vnf/vnf-error-message';
+@import './styles/components/vnf/vnf-input';
+@import './styles/components/vnf/vnf-label';
+@import './styles/components/vnf/vnf-notification';
+@import './styles/components/vnf/vnf-table';
 
 // Layouts
 @import './styles/layouts/outer';
@@ -29,7 +38,10 @@
 
 // Views
 @import './styles/views/shell';
+@import './styles/views/not-found';
+@import './styles/views/sign-in';
 @import './styles/views/dashboard';
+@import './styles/views/users';
 
 // App
 @import './styles/app';

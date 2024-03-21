@@ -1,5 +1,5 @@
-import * as AuthTypes from './auth'
+import * as AuthTypes from './auth';
 
 export type AppStore = {
-  user: AuthTypes.User
-}
+  user: AuthTypes.User;
+};

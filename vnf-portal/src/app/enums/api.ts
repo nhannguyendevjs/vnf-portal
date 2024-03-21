@@ -1,6 +1,6 @@
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
 
-const ROOT_URL = environment.apiUrl + '/api/' + environment.apiVersion
+const ROOT_URL = environment.apiUrl + '/api/' + environment.apiVersion;
 
 export const APIs = {
   auth: {
@@ -10,4 +10,4 @@ export const APIs = {
   users: {
     search: ROOT_URL + '/users/search',
   },
-}
+};

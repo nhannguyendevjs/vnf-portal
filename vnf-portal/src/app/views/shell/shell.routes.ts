@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router'
-import { ShellComponent } from './shell.component'
+import { Routes } from '@angular/router';
+import { ShellComponent } from './shell.component';
 
 export const routes: Routes = [
   {
@@ -8,4 +8,4 @@ export const routes: Routes = [
     component: ShellComponent,
     title: 'Shell',
   },
-]
+];

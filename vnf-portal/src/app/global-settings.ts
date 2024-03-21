@@ -1,4 +1,4 @@
-import { environment } from './environments/environment'
+import { environment } from './environments/environment';
 
 export const GlobalSettings = {
   production: environment.production,
@@ -7,4 +7,4 @@ export const GlobalSettings = {
   apiVersion: environment.apiVersion,
   startupUrl: environment.startupUrl,
   language: environment.language,
-} as const
+} as const;

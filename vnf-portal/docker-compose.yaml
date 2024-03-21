@@ -1,0 +1,12 @@
+version: "3"
+services:
+  vnf-portal:
+    image: vnf-portal:latest
+    ports:
+      - "80:80"
+    networks:
+      - vnf-network
+    restart: always
+networks:
+  vnf-network:
+    external: true

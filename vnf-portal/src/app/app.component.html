@@ -1,0 +1,9 @@
+@if (isSignedIn()) {
+  <app-outer>
+    <app-inner>
+      <router-outlet />
+    </app-inner>
+  </app-outer>
+} @else {
+  <router-outlet />
+}

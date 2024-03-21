@@ -1,0 +1,7 @@
+<ol class="h-full flex flex-col overflow-auto bg-gray-50 border-gray-200 border-r-[1px]">
+  @for (item of navItems; track item.label) {
+    <li [routerLink]="[item.path]" routerLinkActive="nav-link-activated" class="cursor-pointer px-4 py-2 hover:bg-gray-400">
+      {{ item.label }}
+    </li>
+  }
+</ol>

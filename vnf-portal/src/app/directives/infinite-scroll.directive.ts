@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core'
+import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 /**
  * @example
@@ -11,16 +11,16 @@ import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/c
   standalone: true,
 })
 export class InfiniteScrollDirective {
-  @Input() scrollThreshold = 0
-  @Output() scrolled = new EventEmitter<void>()
+  @Input() scrollThreshold = 0;
+  @Output() scrolled = new EventEmitter<void>();
 
   @HostListener('scroll', ['$event'])
   onScroll(event: Event) {
-    const element = event.target as HTMLElement
-    const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + this.scrollThreshold
+    const element = event.target as HTMLElement;
+    const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + this.scrollThreshold;
 
     if (atBottom) {
-      this.scrolled.emit()
+      this.scrolled.emit();
     }
   }
 }

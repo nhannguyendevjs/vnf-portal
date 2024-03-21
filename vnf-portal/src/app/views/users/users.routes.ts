@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router'
-import { UsersComponent } from './users.component'
+import { Routes } from '@angular/router';
+import { UsersComponent } from './users.component';
 
 export const routes: Routes = [
   {
@@ -8,4 +8,4 @@ export const routes: Routes = [
     component: UsersComponent,
     title: 'Users',
   },
-]
+];

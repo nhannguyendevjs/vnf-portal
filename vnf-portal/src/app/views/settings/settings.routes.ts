@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router'
-import { SettingsComponent } from './settings.component'
+import { Routes } from '@angular/router';
+import { SettingsComponent } from './settings.component';
 
 export const routes: Routes = [
   {
@@ -8,4 +8,4 @@ export const routes: Routes = [
     component: SettingsComponent,
     title: 'Settings',
   },
-]
+];

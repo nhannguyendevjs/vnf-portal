@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core'
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { AppSelectors } from '../../stores/app-selector'
-import * as AuthTypes from '../../types/auth'
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AppSelectors } from '../../stores/app-selector';
+import * as AuthTypes from '../../types/auth';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +12,15 @@ import * as AuthTypes from '../../types/auth'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  destroyRef = inject(DestroyRef)
+  destroyRef = inject(DestroyRef);
 
-  currentUser = signal<AuthTypes.User>(null)
+  currentUser = signal<AuthTypes.User>(null);
 
   constructor() {
     AppSelectors()
       .user.pipe(takeUntilDestroyed())
       .subscribe((user) => {
-        this.currentUser.set(user)
-      })
+        this.currentUser.set(user);
+      });
   }
 }

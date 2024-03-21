@@ -1,5 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const tailwindMerge = require('tailwind-merge')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const tailwindMerge = require('tailwind-merge');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -16,4 +16,4 @@ module.exports = {
   },
   plugins: [tailwindMerge],
   darkMode: 'class',
-}
+};

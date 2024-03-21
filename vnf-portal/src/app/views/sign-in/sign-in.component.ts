@@ -3,9 +3,6 @@ import { ChangeDetectionStrategy, Component, ElementRef, Renderer2, inject, sign
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { VNFInputComponent } from '../../components/vnf-input/vnf-input.component';
-import { VNFLabelComponent } from '../../components/vnf-label/vnf-label.component';
-import { VNFNotificationComponent } from '../../components/vnf-notification/vnf-notification.component';
 import { LocalStorageKeys } from '../../enums/local-storage';
 import { ShellActions } from '../../enums/shell';
 import { AuthService } from '../../services/auth.service';
@@ -15,7 +12,7 @@ import { AppStore } from '../../types/store';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, VNFLabelComponent, VNFNotificationComponent, VNFInputComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

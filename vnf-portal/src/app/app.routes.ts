@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router'
-import { authGuard } from './guards/auth.guard'
+import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -34,4 +34,4 @@ export const routes: Routes = [
     path: '**',
     loadChildren: () => import('./views/not-found/not-found.routes').then((m) => m.routes),
   },
-]
+];

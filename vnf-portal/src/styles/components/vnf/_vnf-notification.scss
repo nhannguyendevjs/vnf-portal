@@ -1,0 +1,21 @@
+@layer components {
+  .vnf-notification {
+    @apply text-sm;
+
+    &.--success {
+      @apply text-green-600;
+    }
+
+    &.--error {
+      @apply text-red-600;
+    }
+
+    &.--warning {
+      @apply text-yellow-600;
+    }
+
+    &.--info {
+      @apply text-blue-600;
+    }
+  }
+}

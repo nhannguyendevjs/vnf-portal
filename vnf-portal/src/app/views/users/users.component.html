@@ -3,7 +3,7 @@
     <input class="vnf-input w-full" #inputSearch type="text" id="input-search-users" name="input-search-users" placeholder="Search users by Name" (change)="onSearch($event)" />
 
     @if (searchValue) {
-      <button class="fa-solid fa-xmark text-2xl text-gray-600 absolute right-8" (click)="onClearSearch()"></button>
+      <button class="fa-icon fa-solid fa-close text-2xl text-gray-600 absolute right-8" (click)="onClearSearch()"></button>
     }
   </section>
 

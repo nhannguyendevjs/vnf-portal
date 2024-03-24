@@ -26,7 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
 ## Initial Project
 
 ```bash
@@ -37,6 +36,7 @@ ng add @ngneat/transloco
 npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init
+npm init playwright@latest
 ```
 
 ## Docker Build

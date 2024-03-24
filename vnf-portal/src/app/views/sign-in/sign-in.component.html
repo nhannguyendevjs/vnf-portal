@@ -16,7 +16,7 @@
       <p class="vnf-error-message" *ngIf="signInForm.dirty && signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">Password is required.</p>
     </section>
 
-    <section class="self-start">
+    <section class="self-start flex">
       <input class="vnf-input" type="checkbox" id="show-hide-password" name="show-hide-password" vnfInput inputType="checkbox" (click)="showHidePassword()" />
       <label for="showHidePassword" class="vnf-label">&nbsp;Show Password</label>
     </section>

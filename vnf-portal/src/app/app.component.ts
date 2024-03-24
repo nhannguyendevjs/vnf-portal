@@ -112,7 +112,7 @@ export class AppComponent {
     });
 
     // Settings page
-    hotkeys('ctrl+s, command+s, shift+/', (event, _handler) => {
+    hotkeys('ctrl+s, command+s', (event, _handler) => {
       event.preventDefault();
       this.#router.navigate(['/settings']);
     });
